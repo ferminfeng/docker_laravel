@@ -36,7 +36,7 @@ class TestController extends Controller
             $data = $this->testService->testMysql();
             $this->success($data, 'mysql-success');
         } catch (Throwable $e) {
-            $this->fail(0, 'mysql ' . $e->getMessage());
+            $this->fail(500, 'mysql ' . $e->getMessage());
         }
     }
 
@@ -51,7 +51,7 @@ class TestController extends Controller
             $data = $this->testService->testRedis();
             $this->success($data, 'redis-success');
         } catch (Throwable $e) {
-            $this->fail(0, 'redis ' . $e->getMessage());
+            $this->fail(500, 'redis ' . $e->getMessage());
         }
     }
 
@@ -66,7 +66,7 @@ class TestController extends Controller
             $data = $this->testService->testMongo();
             $this->success($data, 'mongo-success');
         } catch (Throwable $e) {
-            $this->fail(0, 'mongo' . $e->getMessage());
+            $this->fail(500, 'mongo' . $e->getMessage());
         }
     }
 }
