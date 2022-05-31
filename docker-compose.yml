@@ -1,0 +1,75 @@
+version: "3"
+services:
+  nginx-php:
+    image: registry.cn-hangzhou.aliyuncs.com/gupo-base-image/laravel-runtime:ubuntu
+    container_name: nginx-php
+    restart: always 
+    volumes:
+      - /var/www:/var/www
+#      - $PWD/nginx/conf.d:/etc/nginx/conf.d
+#      - $PWD/nginx/log:/usr/share/nginx/logs/
+#      - $PWD/php/fpm:/etc/php/7.4/fpm
+#      - $PWD/php/cli:/etc/php/7.4/cli
+    ports:
+#      - 33000:33000
+#      - 32730:32730
+#      - 32731:32731
+#      - 32732:32732
+#      - 32733:32733
+#      - 32734:32734
+      - 38000:8000
+
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: luyldb
+      MYSQL_USER: luyluser
+      MYSQL_PASSWORD: luylpass
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+#    volumes:
+#      - $PWD/mysql/data:/var/lib/mysql
+
+  redis:
+    image: redis:5.0
+    restart: always
+#    volumes:
+#      - $PWD/redis/:/usr/local/etc/redis
+    ports:
+      - 36379:6379
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - 37017:27017
+    # command: --serviceExecutor adaptive
+    # volumes:
+    #   - $PWD/mongo:/etc/mongo
+    # config: 
+    #   - /etc/mongo/mongod.conf
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 38081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+
+
+
+
+
+
+
+
+
+
+
+
