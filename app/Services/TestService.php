@@ -78,7 +78,8 @@ class TestService
             'age' => 18
         ]);
 
-        $res = DB::connection('mongodb')->collection('phone')->get()->toArray();   //查询所有数据
+        // 查询所有数据
+        $res = DB::connection('mongodb')->collection('users')->get()->toArray();
 
         return $res;
 
