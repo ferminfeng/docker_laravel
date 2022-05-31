@@ -3,7 +3,7 @@ services:
   nginx-php:
     image: registry.cn-hangzhou.aliyuncs.com/gupo-base-image/laravel-runtime:ubuntu
     container_name: nginx-php
-    restart: always 
+    restart: always
     volumes:
       - /var/www:/var/www
 #      - $PWD/nginx/conf.d:/etc/nginx/conf.d
@@ -11,13 +11,12 @@ services:
 #      - $PWD/php/fpm:/etc/php/7.4/fpm
 #      - $PWD/php/cli:/etc/php/7.4/cli
     ports:
-#      - 33000:33000
-#      - 32730:32730
-#      - 32731:32731
-#      - 32732:32732
-#      - 32733:32733
-#      - 32734:32734
-      - 38000:8000
+      - 33000:33000
+      - 32730:32730
+      - 32731:32731
+      - 32732:32732
+      - 32733:32733
+      - 32734:32734
 
   mysql:
     image: mysql:5.7
@@ -29,14 +28,14 @@ services:
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
 #    volumes:
 #      - $PWD/mysql/data:/var/lib/mysql
+    ports:
+      - 33306:3306
 
   redis:
     image: redis:5.0
     restart: always
 #    volumes:
 #      - $PWD/redis/:/usr/local/etc/redis
-    ports:
-      - 36379:6379
 
   mongo:
     image: mongo
@@ -44,8 +43,6 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-    ports:
-      - 37017:27017
     # command: --serviceExecutor adaptive
     # volumes:
     #   - $PWD/mongo:/etc/mongo
