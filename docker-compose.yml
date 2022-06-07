@@ -5,12 +5,13 @@ services:
     container_name: nginx-php
     restart: always
     volumes:
-      - d:/www:/var/www
+      - /var/www:/var/www
     #      - $PWD/nginx/conf.d:/etc/nginx/conf.d
     #      - $PWD/nginx/log:/usr/share/nginx/logs/
     #      - $PWD/php/fpm:/etc/php/7.4/fpm
     #      - $PWD/php/cli:/etc/php/7.4/cli
     ports:
+      - 6010:6010
       - 33000:33000
       - 32730:32730
       - 32731:32731
