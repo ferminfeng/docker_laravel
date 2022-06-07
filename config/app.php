@@ -176,6 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Yankewei\LaravelSensitive\SensitiveServiceProvider::class,
+
+        Jenssegers\Mongodb\MongodbServiceProvider::class
     ],
 
     /*
@@ -228,6 +230,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Sensitive' => Yankewei\LaravelSensitive\Facades\Sensitive::class,
+
+        'Mongo' => Jenssegers\Mongodb\MongodbServiceProvider::class,
     ],
 
 ];

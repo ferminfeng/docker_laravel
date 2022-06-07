@@ -6,10 +6,10 @@ services:
     restart: always
     volumes:
       - /var/www:/var/www
-    #      - $PWD/nginx/conf.d:/etc/nginx/conf.d
-    #      - $PWD/nginx/log:/usr/share/nginx/logs/
-    #      - $PWD/php/fpm:/etc/php/7.4/fpm
-    #      - $PWD/php/cli:/etc/php/7.4/cli
+      - $PWD/docker/nginx/conf.d:/etc/nginx/conf.d
+      - $PWD/docker/nginx/log:/usr/share/nginx/logs/
+      - $PWD/docker/php/fpm:/etc/php/7.4/fpm
+      - $PWD/docker/php/cli:/etc/php/7.4/cli
     ports:
       - 6010:6010
       - 33000:33000
@@ -27,16 +27,16 @@ services:
       MYSQL_USER: luyluser
       MYSQL_PASSWORD: luylpass
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
-    #    volumes:
-    #      - $PWD/mysql/data:/var/lib/mysql
+    volumes:
+      - $PWD/docker/mysql/data:/var/lib/mysql
     ports:
       - 33306:3306
 
   redis:
     image: redis:5.0
     restart: always
-  #    volumes:
-  #      - $PWD/redis/:/usr/local/etc/redis
+    volumes:
+      - $PWD/docker/redis/:/usr/local/etc/redis
 
   mongo:
     image: mongo
@@ -45,8 +45,8 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
     # command: --serviceExecutor adaptive
-    # volumes:
-    #   - $PWD/mongo:/etc/mongo
+    volumes:
+      - $PWD/docker/mongo:/etc/mongo
     # config: 
     #   - /etc/mongo/mongod.conf
 
