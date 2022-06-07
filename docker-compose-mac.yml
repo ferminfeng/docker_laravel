@@ -5,11 +5,11 @@ services:
     container_name: nginx-php
     restart: always
     volumes:
-      - d:/www:/var/www
-    #      - $PWD/nginx/conf.d:/etc/nginx/conf.d
-    #      - $PWD/nginx/log:/usr/share/nginx/logs/
-    #      - $PWD/php/fpm:/etc/php/7.4/fpm
-    #      - $PWD/php/cli:/etc/php/7.4/cli
+      - /var/www:/var/www
+#      - $PWD/nginx/conf.d:/etc/nginx/conf.d
+#      - $PWD/nginx/log:/usr/share/nginx/logs/
+#      - $PWD/php/fpm:/etc/php/7.4/fpm
+#      - $PWD/php/cli:/etc/php/7.4/cli
     ports:
       - 33000:33000
       - 32730:32730
@@ -26,16 +26,16 @@ services:
       MYSQL_USER: luyluser
       MYSQL_PASSWORD: luylpass
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
-    #    volumes:
-    #      - $PWD/mysql/data:/var/lib/mysql
+#    volumes:
+#      - $PWD/mysql/data:/var/lib/mysql
     ports:
       - 33306:3306
 
   redis:
     image: redis:5.0
     restart: always
-  #    volumes:
-  #      - $PWD/redis/:/usr/local/etc/redis
+#    volumes:
+#      - $PWD/redis/:/usr/local/etc/redis
 
   mongo:
     image: mongo
