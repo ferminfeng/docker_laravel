@@ -16,6 +16,8 @@ Route::group([
         $router->get('/testRedis', 'TestController@testRedis');
 
         $router->get('/testMongo', 'TestController@testMongo');
+
+        $router->get('/sendQueue', 'TestController@sendQueue');
     });
 
 

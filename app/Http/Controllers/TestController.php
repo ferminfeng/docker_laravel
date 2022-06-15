@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\TestQueueJob;
 use App\Services\TestService;
 use Throwable;
-use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
@@ -67,6 +67,25 @@ class TestController extends Controller
             $this->success($data, 'mongo-success');
         } catch (Throwable $e) {
             $this->fail(500, 'mongo' . $e->getMessage());
+        }
+    }
+
+    /**
+     * 发送队列
+     *
+     * @author fyf
+     */
+    public function sendQueue()
+    {
+        try {
+            $params = [
+                'test_key' => 111
+            ];
+
+            TestQueueJob::dispatch($params);
+            $this->success();
+        } catch (Throwable $e) {
+            $this->fail(500, 'sendQueue' . $e->getMessage());
         }
     }
 }
