@@ -5,11 +5,11 @@ services:
     image: registry.cn-hangzhou.aliyuncs.com/gupo-base-image/laravel-runtime:ubuntu
     restart: always
     volumes:
-      - /var/www:/var/www
-      - $PWD/docker/nginx/conf.d:/etc/nginx/conf.d
-      - $PWD/docker/nginx/log:/usr/share/nginx/logs/
-      - $PWD/docker/php/fpm:/etc/php/7.4/fpm
-      - $PWD/docker/php/cli:/etc/php/7.4/cli
+      - D:/www:/var/www
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./docker/nginx/log:/usr/share/nginx/logs/
+      - ./docker/php/fpm:/etc/php/7.4/fpm
+      - ./docker/php/cli:/etc/php/7.4/cli
     ports:
       - 6010:6010
       - 33000:33000
@@ -26,7 +26,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      - $PWD/docker/mysql/data:/var/lib/mysql
+      - ./docker/mysql/data:/var/lib/mysql
     ports:
       - 33306:3306
 
@@ -35,7 +35,7 @@ services:
     image: redis:5.0
     restart: always
     volumes:
-      - $PWD/docker/redis/:/usr/local/etc/redis
+      - ./docker/redis/:/usr/local/etc/redis
 
   dl_mongo:
     container_name: dl_mongo
@@ -46,7 +46,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
     # command: --serviceExecutor adaptive
     volumes:
-      - $PWD/docker/mongo:/etc/mongo
+      - ./docker/mongo:/etc/mongo
     # config:
     #   - /etc/mongo/mongod.conf
 

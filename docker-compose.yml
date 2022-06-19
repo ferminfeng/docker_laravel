@@ -1,8 +1,8 @@
 version: "3"
 services:
-  nginx-php:
+  dl_nginx_php:
+    container_name: dl_nginx_php
     image: registry.cn-hangzhou.aliyuncs.com/gupo-base-image/laravel-runtime:ubuntu
-    container_name: nginx-php
     restart: always
     volumes:
       - /var/www:/var/www
@@ -19,26 +19,26 @@ services:
       - 32733:32733
       - 32734:32734
 
-  mysql:
+  dl_mysql:
+    container_name: dl_mysql
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_DATABASE: luyldb
-      MYSQL_USER: luyluser
-      MYSQL_PASSWORD: luylpass
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+      MYSQL_ROOT_PASSWORD: root
     volumes:
       - $PWD/docker/mysql/data:/var/lib/mysql
     ports:
       - 33306:3306
 
-  redis:
+  dl_redis:
+    container_name: dl_redis
     image: redis:5.0
     restart: always
     volumes:
       - $PWD/docker/redis/:/usr/local/etc/redis
 
-  mongo:
+  dl_mongo:
+    container_name: dl_mongo
     image: mongo
     restart: always
     environment:
@@ -50,7 +50,8 @@ services:
     # config: 
     #   - /etc/mongo/mongod.conf
 
-  mongo-express:
+  dl_mongo_express:
+    container_name: dl_mongo_express
     image: mongo-express
     restart: always
     ports:
@@ -58,7 +59,7 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
-      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@dl_mongo:27017/
 
 
 
