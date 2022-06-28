@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+
+  ps:
+    container_name: ps
+    build: ./dockerfile/
+    image: php:7.4-fpm
+    volumes:
+      - /var/www:/var/www
+    privileged: true
+    restart: always
