@@ -1,0 +1,50 @@
+server {
+        listen 1181;
+
+        server_name     _;
+        root    /var/www/kyk/ybd-shop/public;
+        index   index.php index.html;
+
+        error_log       logs/error.log;
+        access_log      logs/access.log;
+
+        location ~ \.php$ {
+                fastcgi_pass unix:/usr/run/php-fpm.sock;
+        #        fastcgi_index index.php;
+                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                include fastcgi_params;
+        }
+
+        location / {
+                if (!-e $request_filename) {
+                        rewrite ^(.*)$ /index.php?s=$1 last;
+                        break;
+                }
+        }
+}
+
+server {
+        listen 1182;
+
+        server_name     _;
+        root    /var/www/kyk/ybd-shop-admin/public;
+        index   index.php index.html;
+
+        error_log       logs/error.log;
+        access_log      logs/access.log;
+
+        location ~ \.php$ {
+                fastcgi_pass unix:/usr/run/php-fpm.sock;
+        #        fastcgi_index index.php;
+                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                include fastcgi_params;
+        }
+
+        location / {
+                if (!-e $request_filename) {
+                        rewrite ^(.*)$ /index.php?s=$1 last;
+                        break;
+                }
+        }
+}
+
